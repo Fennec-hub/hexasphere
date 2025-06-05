@@ -9,7 +9,6 @@ export interface GuiSphereState {
   coloringMode: "none" | "average" | "vertex";
   mapImageUrl: string;
   showWireframe: boolean;
-  // defaultColorHex: string; // For GUI color picker for defaultColor
 }
 
 export function createDemoGUI(
@@ -18,7 +17,6 @@ export function createDemoGUI(
   wireframeMesh?: Mesh
 ): GUI {
   const gui = new GUI();
-  // const tempDefaultColor = { color: initialState.defaultColorHex || '#cccccc' }; // For lil-gui color picker
 
   function applyChanges() {
     const paramsToUpdate: Partial<HexasphereParams> = {
@@ -26,7 +24,6 @@ export function createDemoGUI(
       numDivisions: initialState.numDivisions,
       tileScale: initialState.tileScale,
       coloringMode: initialState.coloringMode,
-      // defaultColor: new THREE.Color(tempDefaultColor.color) // Update from GUI color picker
     };
     if (
       initialState.mapImageUrl &&
@@ -62,13 +59,6 @@ export function createDemoGUI(
     .add(initialState, "mapImageUrl")
     .name("Map Image URL")
     .onFinishChange(applyChanges);
-
-  // Example for defaultColor if you add it to GuiSphereState as hex string
-  // gui.addColor(tempDefaultColor, 'color').name('Default Color')
-  //     .onChange(() => {
-  //         initialState.defaultColorHex = tempDefaultColor.color; // Update state if needed
-  //         applyChanges();
-  //     });
 
   if (wireframeMesh) {
     gui
